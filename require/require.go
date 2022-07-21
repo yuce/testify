@@ -6,10 +6,11 @@
 package require
 
 import (
-	assert "github.com/stretchr/testify/assert"
 	http "net/http"
 	url "net/url"
 	time "time"
+
+	assert "github.com/stretchr/testify/assert"
 )
 
 // Condition uses a Comparison to assert a complex condition.
@@ -1885,28 +1886,6 @@ func WithinRangef(t TestingT, actual time.Time, start time.Time, end time.Time, 
 		h.Helper()
 	}
 	if assert.WithinRangef(t, actual, start, end, msg, args...) {
-		return
-	}
-	t.FailNow()
-}
-
-// YAMLEq asserts that two YAML strings are equivalent.
-func YAMLEq(t TestingT, expected string, actual string, msgAndArgs ...interface{}) {
-	if h, ok := t.(tHelper); ok {
-		h.Helper()
-	}
-	if assert.YAMLEq(t, expected, actual, msgAndArgs...) {
-		return
-	}
-	t.FailNow()
-}
-
-// YAMLEqf asserts that two YAML strings are equivalent.
-func YAMLEqf(t TestingT, expected string, actual string, msg string, args ...interface{}) {
-	if h, ok := t.(tHelper); ok {
-		h.Helper()
-	}
-	if assert.YAMLEqf(t, expected, actual, msg, args...) {
 		return
 	}
 	t.FailNow()

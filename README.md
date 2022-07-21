@@ -1,9 +1,11 @@
 Testify - Thou Shalt Write Tests - Without Dependencies
 =======================================================
 
-**This is a fork of testify which doesn't have any dependencies.**
+**This is a fork of testify with the following changes.**
 
-**Contains only the assert and require packages.**
+* No external dependencies.
+* Contains only the assert and require packages.
+* Does not do YAML comparison.
 
 **Original README below**
 

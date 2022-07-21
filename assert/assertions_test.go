@@ -1755,9 +1755,6 @@ func TestDirExists(t *testing.T) {
 	mockT = new(testing.T)
 	False(t, DirExists(mockT, "non_existent_dir"))
 
-	mockT = new(testing.T)
-	True(t, DirExists(mockT, "../_codegen"))
-
 	var tempFiles []string
 
 	link, err := getTempSymlinkPath("assertions.go")
@@ -1788,9 +1785,6 @@ func TestNoDirExists(t *testing.T) {
 
 	mockT = new(testing.T)
 	True(t, NoDirExists(mockT, "non_existent_dir"))
-
-	mockT = new(testing.T)
-	False(t, NoDirExists(mockT, "../_codegen"))
 
 	var tempFiles []string
 
@@ -1865,81 +1859,6 @@ func TestJSONEq_ExpectedAndActualNotJSON(t *testing.T) {
 func TestJSONEq_ArraysOfDifferentOrder(t *testing.T) {
 	mockT := new(testing.T)
 	False(t, JSONEq(mockT, `["foo", {"hello": "world", "nested": "hash"}]`, `[{ "hello": "world", "nested": "hash"}, "foo"]`))
-}
-
-func TestYAMLEq_EqualYAMLString(t *testing.T) {
-	mockT := new(testing.T)
-	True(t, YAMLEq(mockT, `{"hello": "world", "foo": "bar"}`, `{"hello": "world", "foo": "bar"}`))
-}
-
-func TestYAMLEq_EquivalentButNotEqual(t *testing.T) {
-	mockT := new(testing.T)
-	True(t, YAMLEq(mockT, `{"hello": "world", "foo": "bar"}`, `{"foo": "bar", "hello": "world"}`))
-}
-
-func TestYAMLEq_HashOfArraysAndHashes(t *testing.T) {
-	mockT := new(testing.T)
-	expected := `
-numeric: 1.5
-array:
-  - foo: bar
-  - 1
-  - "string"
-  - ["nested", "array", 5.5]
-hash:
-  nested: hash
-  nested_slice: [this, is, nested]
-string: "foo"
-`
-
-	actual := `
-numeric: 1.5
-hash:
-  nested: hash
-  nested_slice: [this, is, nested]
-string: "foo"
-array:
-  - foo: bar
-  - 1
-  - "string"
-  - ["nested", "array", 5.5]
-`
-	True(t, YAMLEq(mockT, expected, actual))
-}
-
-func TestYAMLEq_Array(t *testing.T) {
-	mockT := new(testing.T)
-	True(t, YAMLEq(mockT, `["foo", {"hello": "world", "nested": "hash"}]`, `["foo", {"nested": "hash", "hello": "world"}]`))
-}
-
-func TestYAMLEq_HashAndArrayNotEquivalent(t *testing.T) {
-	mockT := new(testing.T)
-	False(t, YAMLEq(mockT, `["foo", {"hello": "world", "nested": "hash"}]`, `{"foo": "bar", {"nested": "hash", "hello": "world"}}`))
-}
-
-func TestYAMLEq_HashesNotEquivalent(t *testing.T) {
-	mockT := new(testing.T)
-	False(t, YAMLEq(mockT, `{"foo": "bar"}`, `{"foo": "bar", "hello": "world"}`))
-}
-
-func TestYAMLEq_ActualIsSimpleString(t *testing.T) {
-	mockT := new(testing.T)
-	False(t, YAMLEq(mockT, `{"foo": "bar"}`, "Simple String"))
-}
-
-func TestYAMLEq_ExpectedIsSimpleString(t *testing.T) {
-	mockT := new(testing.T)
-	False(t, YAMLEq(mockT, "Simple String", `{"foo": "bar", "hello": "world"}`))
-}
-
-func TestYAMLEq_ExpectedAndActualSimpleString(t *testing.T) {
-	mockT := new(testing.T)
-	True(t, YAMLEq(mockT, "Simple String", "Simple String"))
-}
-
-func TestYAMLEq_ArraysOfDifferentOrder(t *testing.T) {
-	mockT := new(testing.T)
-	False(t, YAMLEq(mockT, `["foo", {"hello": "world", "nested": "hash"}]`, `[{ "hello": "world", "nested": "hash"}, "foo"]`))
 }
 
 type diffTestingStruct struct {

@@ -6,10 +6,11 @@
 package require
 
 import (
-	assert "github.com/stretchr/testify/assert"
 	http "net/http"
 	url "net/url"
 	time "time"
+
+	assert "github.com/stretchr/testify/assert"
 )
 
 // Condition uses a Comparison to assert a complex condition.
@@ -1480,22 +1481,6 @@ func (a *Assertions) WithinRangef(actual time.Time, start time.Time, end time.Ti
 		h.Helper()
 	}
 	WithinRangef(a.t, actual, start, end, msg, args...)
-}
-
-// YAMLEq asserts that two YAML strings are equivalent.
-func (a *Assertions) YAMLEq(expected string, actual string, msgAndArgs ...interface{}) {
-	if h, ok := a.t.(tHelper); ok {
-		h.Helper()
-	}
-	YAMLEq(a.t, expected, actual, msgAndArgs...)
-}
-
-// YAMLEqf asserts that two YAML strings are equivalent.
-func (a *Assertions) YAMLEqf(expected string, actual string, msg string, args ...interface{}) {
-	if h, ok := a.t.(tHelper); ok {
-		h.Helper()
-	}
-	YAMLEqf(a.t, expected, actual, msg, args...)
 }
 
 // Zero asserts that i is the zero value for its type.
