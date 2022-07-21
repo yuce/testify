@@ -16,8 +16,4 @@ package testify
 import (
 	// assert package
 	_ "github.com/stretchr/testify/assert"
-	// http package
-	_ "github.com/stretchr/testify/http"
-	// mock package
-	_ "github.com/stretchr/testify/mock"
 )

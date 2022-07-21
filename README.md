@@ -1,5 +1,13 @@
-Testify - Thou Shalt Write Tests
-================================
+Testify - Thou Shalt Write Tests - Without Dependencies
+=======================================================
+
+**This is a fork of testify which doesn't have any dependencies.**
+
+**Contains only the assert and require packages.**
+
+**Original README below**
+
+---
 
 ℹ️ We are working on testify v2 and would love to hear what you'd like to see in it, have your say here: https://cutt.ly/testify
 
